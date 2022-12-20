@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to apipcr application." });
 });
 //incluir routes
-require("./app/routes/model.router")(app);
+require("./app/routes/deposito.router")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

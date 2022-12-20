@@ -1,5 +1,5 @@
 const db = require("../models");
-const Model = db.model;
+const Deposito = db.deposito;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -13,12 +13,12 @@ exports.create = (req, res) => {
   }
 
   // Create a Tutorial
-  const model = {
+  const deposito = {
     nome: "gabriel",
   };
 
   // Save Tutorial in the database
-  Model.create(model)
+  Deposito.create(deposito)
     .then(data => {
       res.send(data);
     })

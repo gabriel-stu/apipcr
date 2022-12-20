@@ -4,7 +4,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: 0,
-
+  schema:'colorindo',
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -18,6 +18,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.model = require("./model.js")(sequelize, Sequelize);
+db.model = require("./deposito.js")(sequelize, Sequelize);
 
 module.exports = db;
