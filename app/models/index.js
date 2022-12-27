@@ -1,6 +1,7 @@
-const dbConfig = require("../config/db.config");
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+  const dbConfig = require("../config/db.config");
+  const {Sequelize, DataTypes}= require("sequelize");
+  
+  const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: 0,
@@ -14,10 +15,11 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 });
 
 const db = {};
-
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.material = require("./material.js")(sequelize, Sequelize);
+db.painel = require("./painel.js")(sequelize, Sequelize, DataTypes);
+db.artista = require("./artista.js")(sequelize, Sequelize,db.painel);
 
-db.model = require("./deposito.js")(sequelize, Sequelize);
 
 module.exports = db;

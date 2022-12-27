@@ -1,26 +1,31 @@
-const db = require("../models");
-const Deposito = db.deposito;
-const Op = db.Sequelize.Op;
+const db = require("../models/index");
+const Material = db.material;
+// const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+  // if (!req.body.title) {
+  //   res.status(400).send({
+  //     message: "Content can not be empty!"
+  //   });
+  //   return;
+  // }
 
   // Create a Tutorial
-  const deposito = {
-    nome: "gabriel",
+  const material = {
+    nome: req.body.nome,
+    tipo: req.body.tipo,
+    cor: req.body.cor,
+    und: req.body.und,
+    quant: req.body.quant,
   };
-
+  
   // Save Tutorial in the database
-  Deposito.create(deposito)
+  Material.create(material)
     .then(data => {
       res.send(data);
+
     })
     .catch(err => {
       res.status(500).send({

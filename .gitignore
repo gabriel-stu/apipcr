@@ -22,6 +22,9 @@ lib-cov
 coverage
 *.lcov
 
+#nodemon
+nodemon.json
+
 # nyc test coverage
 .nyc_output
 
