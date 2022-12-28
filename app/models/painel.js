@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize,DataTypes) => {
+module.exports = (sequelize, Sequelize,DataTypes,Artista) => {
     const Painel = sequelize.define("painel", {
       id_pan: {
         type: Sequelize.INTEGER,
@@ -25,11 +25,14 @@ module.exports = (sequelize, Sequelize,DataTypes) => {
       },
       local_arm: {
         type: DataTypes.STRING(40),
-      }
+      },
     },{
       timestamps: false
     });
 
+    Artista.hasMany(Painel,{
+      foreignKey:'id_art'
+    });
 
     return Painel;
 

@@ -18,8 +18,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.material = require("./material.js")(sequelize, Sequelize);
-db.painel = require("./painel.js")(sequelize, Sequelize, DataTypes);
-db.artista = require("./artista.js")(sequelize, Sequelize,db.painel);
+db.artista = require("./artista.js")(sequelize, Sequelize);
+db.painel = require("./painel.js")(sequelize, Sequelize, DataTypes,db.artista);
+db.pedido = require("./pedido.js")(sequelize,Sequelize,DataTypes,db.artista,db.material)
 
 
 module.exports = db;

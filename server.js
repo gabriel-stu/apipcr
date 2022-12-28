@@ -32,8 +32,7 @@ app.listen(PORT, () => {
 });
   // import db para usar a função sync, atualizando o banco de dados
   const db = require('./app/models/index.js')
-  // const material = require("./app/models/material");
-  db.sequelize.sync({force:true}).then(console.log("Banco atualizado"));
+  // db.sequelize.sync().then(console.log("Banco atualizado"));
 
  //teste da conexão com o banco de dados
   try {

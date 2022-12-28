@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize,Painel) => {
+module.exports = (sequelize, Sequelize) => {
     const Artista = sequelize.define("artista", {
       id_art: {
         type: Sequelize.INTEGER,
@@ -18,10 +18,6 @@ module.exports = (sequelize, Sequelize,Painel) => {
     },{
       timestamps: false
     });
-    //relação de 1 para N
-    Artista.belongsTo(Painel,{
-        foreignKey:'id_pan'
-    })
 
     return Artista;
 
