@@ -13,11 +13,11 @@ module.exports = (sequelize, Sequelize,DataTypes,Artista) => {
         type: Sequelize.INTEGER
       },
       data_init: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull:true
       },
       data_ter: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull:true
       },
       local: {

@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize,DataTypes,Artista,Material) => {
         type: DataTypes.STRING(60), 
         },
       data: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       }
     },{
       timestamps: false

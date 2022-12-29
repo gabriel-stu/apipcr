@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const router = require('./app/routes/material.router')
+const MatRouter = require('./app/routes/material.router')
 
 const app = express();
 
@@ -22,8 +22,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to apipcr application." });
 });
 //incluir routes
-// require("./app/routes/material.router")(app);
-app.use(router);
+//rota do material
+app.use('/apipcr/material',MatRouter);
+//rota do painel
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -37,10 +38,10 @@ app.listen(PORT, () => {
  //teste da conexão com o banco de dados
   try {
     db.sequelize.authenticate();
-    console.log('Connection has been established successfully.');
+    console.log('A conexão foi um sucesso!');
 
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error('Não foi possível conectar com o banco', error);
   }
  
 
