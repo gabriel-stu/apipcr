@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize,DataTypes,Artista) => {
         type: DataTypes.DECIMAL(10,2),
         allowNull:false 
         },
+      categoria:{
+        type: DataTypes.STRING(15),
+        allowNull:false 
+      },
       ordem_ser: {
         type: Sequelize.INTEGER
       },

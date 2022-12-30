@@ -15,6 +15,7 @@ exports.create = (req, res) => {
   // Create a Tutorial
   const painel = {
     area: req.body.area,
+    categoria:req.body.categoria,
     ordem_ser: req.body.ordem_ser,
     data_init: req.body.data_init,
     data_ter: req.body.data_ter,

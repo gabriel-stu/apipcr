@@ -1,7 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const MatRouter = require('./app/routes/material.router')
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
+const MatRouter = require('./app/routes/material.router');
+const PanRouter = require('./app/routes/painel.router')
+
 
 const app = express();
 
@@ -17,7 +19,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// simple route
+// route raiz
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to apipcr application." });
 });
@@ -25,6 +27,8 @@ app.get("/", (req, res) => {
 //rota do material
 app.use('/apipcr/material',MatRouter);
 //rota do painel
+app.use('/apipcr/painel',PanRouter);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
