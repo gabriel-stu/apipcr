@@ -22,5 +22,10 @@ db.artista = require("./artista.js")(sequelize, Sequelize);
 db.painel = require("./painel.js")(sequelize, Sequelize, DataTypes,db.artista);
 db.pedido = require("./pedido.js")(sequelize,Sequelize,DataTypes,db.artista,db.material)
 
+// import db para usar a função sync, atualizando o banco de dados
+db.sequelize.sync({force:true})
+.then(console.log("Atualizando o banco..."))
+.catch(e=>{console.log(e)});
+
 
 module.exports = db;
