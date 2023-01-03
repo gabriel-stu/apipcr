@@ -45,7 +45,9 @@ exports.findAll = (req, res) => {
 
   Painel.findAll({ 
       where: {
-        conditionLocal
+        [Op.and]:[
+          conditionLocal
+        ]
       }
     })
     .then(data => {

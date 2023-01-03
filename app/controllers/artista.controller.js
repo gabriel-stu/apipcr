@@ -2,7 +2,7 @@ const db = require("../models/index");
 const Artista = db.artista;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new Artista
 exports.create = (req, res) => {
   // Validate request
   // if (!req.body.title) {
@@ -12,13 +12,13 @@ exports.create = (req, res) => {
   //   return;
   // }
 
-  // Create a Tutorial
+  // Create a Artista
   const artista = {
     nome: req.body.nome,
     apelido:req.body.apelido,
   };
   
-  // Save Tutorial in the database
+  // Save Artista in the database
   Artista.create(artista)
     .then(data => {
       res.send(data);
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial."
+          err.message || "Some error occurred while creating the Artista."
       });
     });
 };
@@ -39,7 +39,9 @@ exports.findAll = (req, res) => {
 
   Artista.findAll({ 
       where: {
-        conditionNome
+        [Op.and]:[
+          conditionNome
+        ]
       }
     })
     .then(data => {
@@ -63,13 +65,13 @@ exports.findOne = (req, res) => {
       } else {
         console.log(id)
         res.status(404).send({
-          message: `Cannot find Tutorial with id=${id}.`
+          message: `Cannot find Artista with id=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Tutorial with id=" + id
+        message: "Error retrieving Artista with id=" + id
       });
     });
 };
@@ -114,7 +116,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Material with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot delete Material with id=${id}. Maybe Artista was not found!`
         });
       }
     })

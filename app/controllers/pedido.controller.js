@@ -16,6 +16,8 @@ exports.create = (req, res) => {
   const pedido = {
     motivo: req.body.motivo,
     data:req.body.data,
+    id_art:req.body.id_art,
+    id_mat:req.body.id_mat
   };
   
   // Save Tutorial in the database
@@ -39,7 +41,9 @@ exports.findAll = (req, res) => {
 
   Pedido.findAll({ 
       where: {
-        conditionMotivo
+        [Op.and]:[
+          conditionMotivo
+        ]
       }
     })
     .then(data => {

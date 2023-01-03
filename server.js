@@ -43,14 +43,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
- //teste da conexão com o banco de dados
-  try {
-    db.sequelize.authenticate();
-    console.log('A conexão foi um sucesso!');
-
-  } catch (error) {
-    console.error('Não foi possível conectar com o banco', error);
-  }
  
 
 
