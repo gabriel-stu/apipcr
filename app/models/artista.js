@@ -6,14 +6,11 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true
           },
       nome: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(80),
         allowNull:false 
         },
-      cpf: {
-        type: Sequelize.STRING(14)
-      },
-      cnpj: {
-        type: Sequelize.STRING(20),
+      apelido:{
+        type: Sequelize.STRING(30),
       }
     },{
       timestamps: false
