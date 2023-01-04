@@ -1,7 +1,12 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const router = require('./app/routes/material.router')
+const db = require('./app/models/index.js');
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
+const MatRouter = require('./app/routes/material.router');
+const PanRouter = require('./app/routes/painel.router');
+const ArtRouter = require('./app/routes/artista.router');
+const PedRouter = require('./app/routes/pedido.router');
+
 
 const app = express();
 
@@ -17,31 +22,27 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// simple route
+// route raiz
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to apipcr application." });
 });
 //incluir routes
-// require("./app/routes/material.router")(app);
-app.use(router);
+//rota do material
+app.use('/apipcr/material',MatRouter);
+//rota do painel
+app.use('/apipcr/painel',PanRouter);
+//rota do artista
+app.use('/apipcr/artista',ArtRouter);
+//rota do pedido
+app.use('/apipcr/pedido',PedRouter);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
-  // import db para usar a função sync, atualizando o banco de dados
-  const db = require('./app/models/index.js')
-  // db.sequelize.sync().then(console.log("Banco atualizado"));
 
- //teste da conexão com o banco de dados
-  try {
-    db.sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
  
 
 

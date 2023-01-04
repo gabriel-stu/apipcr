@@ -4,6 +4,7 @@ module.exports = {
     PASSWORD: 'DSAcurso',
     DB: "prefeitura",
     dialect: "postgres",
+    SCHEMA:"Colorindo",
     pool: {
       max: 5,
       min: 0,

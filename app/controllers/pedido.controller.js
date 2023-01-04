@@ -1,5 +1,5 @@
 const db = require("../models/index");
-const Material = db.material;
+const Pedido = db.pedido;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -13,49 +13,36 @@ exports.create = (req, res) => {
   // }
 
   // Create a Tutorial
-  const material = {
-    nome: req.body.nome,
-    tipo: req.body.tipo,
-    cor: req.body.cor,
-    und: req.body.und,
-    quant: req.body.quant,
+  const pedido = {
+    motivo: req.body.motivo,
+    data:req.body.data,
+    id_art:req.body.id_art,
+    id_mat:req.body.id_mat
   };
   
   // Save Tutorial in the database
-  Material.create(material)
+  Pedido.create(pedido)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the material."
+          err.message || "Some error occurred while creating the Tutorial."
       });
     });
 };
 
 // Busca de todos os itens do banco ou busca por nome
 exports.findAll = (req, res) => {
-  //get nome
-  const nome = req.query.nome;
-  var conditionName = nome ? { nome: { [Op.iLike]: `%${nome}%` } } : null;
-  //get tipo
-  const tipo = req.query.tipo;
-  var conditionTipo = tipo ? { tipo: { [Op.iLike]: `%${tipo}%` } } : null;
-  //get cor
-  const cor = req.query.cor;
-  var conditionCor = cor ? { cor: { [Op.iLike]: `%${cor}%` } } : null;
-  //get unidade
-  const und = req.query.und;
-  var conditionUnd = und ? { und: { [Op.iLike]: `%${und}%` } } : null;
+  //get motivo
+  const motivo = req.query.motivo;
+  var conditionMotivo = motivo ? { motivo: { [Op.iLike]: `%${motivo}%` } } : null;
 
-  Material.findAll({ 
+  Pedido.findAll({ 
       where: {
         [Op.and]:[
-          conditionName,
-          conditionTipo,
-          conditionCor,
-          conditionUnd,
+          conditionMotivo
         ]
       }
     })
@@ -65,7 +52,7 @@ exports.findAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Algum erro ocorreu."
       });
     });
 };
@@ -73,7 +60,7 @@ exports.findAll = (req, res) => {
 // Busca por ID
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Material.findByPk(id)
+  Pedido.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -91,43 +78,43 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a Material by the id in the request
+// Update a Pedido by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Material.update(req.body, {
-    where: { id_mat: id }
+  Pedido.update(req.body, {
+    where: { id_ped: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Material was updated successfully."
+          message: "Pedido was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update Material with id=${id}. Maybe Material was not found or req.body is empty!`
+          message: `Cannot update Pedido with id=${id}. Maybe Pedido was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Material with id=" + id
+        message: "Error updating Pedido with id=" + id
       });
     });
   
 };
 
-// Delete a Material with the specified id in the request
+// Delete a Pedido with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Material.destroy({
-    where: { id_mat: id }
+  Pedido.destroy({
+    where: { id_ped: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Material was deleted successfully!"
+          message: "Pedido was deleted successfully!"
         });
       } else {
         res.send({
